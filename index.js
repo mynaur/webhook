@@ -1,12 +1,27 @@
 
 const functions = require('firebase-functions');
 const {dialogflow} = require('actions-on-google');
+const {WebhookClient} = require('dialogflow-fulfillment');
 
 
 const WELCOME_INTENT = 'Default Welcome Intent';
 const FALLBACK_INTENT = 'Default Fallback Intent';
 const SEARCH_PRODUCT = 'search product';
 const WRONG_PRODUCT = 'wrong products';
+
+
+/**  DEFINING WEBHOOK **/
+app.post('/webhook', (req, res) => {
+
+    console.log('/Webhook call : received post request');
+    const agent = new WebhookClient({
+        request: req,
+        response: res
+    });
+
+    agent.handleRequest(WELCOME_INTENT,FALLBACK_INTENT, SEARCH_PRODUCT, WRONG_PRODUCT);
+
+});
 
 //we will put response in app object that we send to the user
 const app = dialogflow();
