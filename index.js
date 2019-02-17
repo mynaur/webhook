@@ -19,7 +19,7 @@ app.post('/webhook', (req, res) => {
         response: res
     });
 
-    agent.handleRequest(WELCOME_INTENT,FALLBACK_INTENT, SEARCH_PRODUCT, WRONG_PRODUCT);
+    agent.handleRequest(WELCOME_INTENT);
 
 });
 
